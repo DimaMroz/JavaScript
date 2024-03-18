@@ -127,28 +127,80 @@ const transformedCourses = coursesAndDurationArray.map((course, index) => ({
 console.log("Transformed Courses:", transformedCourses);
 
 //----------------------------------------------------
-// Опис колоди карт
-const cardDeck = [];
+// описати колоду карт (від 6 до туза без джокерів)
 
-const suits = ['spades', 'diamonds', 'hearts', 'clubs'];
-const values = ['6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
+const cards = [
+    {cardSuit: 'spades', value: '6', color: 'black'},
+    {cardSuit: 'spades', value: '7', color: 'black'},
+    {cardSuit: 'spades', value: '8', color: 'black'},
+    {cardSuit: 'spades', value: '9', color: 'black'},
+    {cardSuit: 'spades', value: '10', color: 'black'},
+    {cardSuit: 'spades', value: 'ace', color: 'black'},
+    {cardSuit: 'spades', value: 'jack', color: 'black'},
+    {cardSuit: 'spades', value: 'queen', color: 'black'},
+    {cardSuit: 'spades', value: 'king', color: 'black'},
+    {cardSuit: 'clubs', value: '6', color: 'black'},
+    {cardSuit: 'clubs', value: '7', color: 'black'},
+    {cardSuit: 'clubs', value: '8', color: 'black'},
+    {cardSuit: 'clubs', value: '9', color: 'black'},
+    {cardSuit: 'clubs', value: '10', color: 'black'},
+    {cardSuit: 'clubs', value: 'ace', color: 'black'},
+    {cardSuit: 'clubs', value: 'jack', color: 'black'},
+    {cardSuit: 'clubs', value: 'queen', color: 'black'},
+    {cardSuit: 'clubs', value: 'king', color: 'black'},
+    {cardSuit: 'hearts', value: '6', color: 'red'},
+    {cardSuit: 'hearts', value: '7', color: 'red'},
+    {cardSuit: 'hearts', value: '8', color: 'red'},
+    {cardSuit: 'hearts', value: '9', color: 'red'},
+    {cardSuit: 'hearts', value: '10', color: 'red'},
+    {cardSuit: 'hearts', value: 'ace', color: 'red'},
+    {cardSuit: 'hearts', value: 'jack', color: 'red'},
+    {cardSuit: 'hearts', value: 'queen', color: 'red'},
+    {cardSuit: 'hearts', value: 'king', color: 'red'},
+    {cardSuit: 'diamonds', value: '6', color: 'red'},
+    {cardSuit: 'diamonds', value: '7', color: 'red'},
+    {cardSuit: 'diamonds', value: '8', color: 'red'},
+    {cardSuit: 'diamonds', value: '9', color: 'red'},
+    {cardSuit: 'diamonds', value: '10', color: 'red'},
+    {cardSuit: 'diamonds', value: 'ace', color: 'red'},
+    {cardSuit: 'diamonds', value: 'jack', color: 'red'},
+    {cardSuit: 'diamonds', value: 'queen', color: 'red'},
+    {cardSuit: 'diamonds', value: 'king', color: 'red'},
+]
 
-suits.forEach(suit => {
-    values.forEach(value => {
-        let color = (suit === 'diamonds' || suit === 'hearts') ? 'red' : 'black';
-        cardDeck.push({
-            cardSuit: suit,
-            value: value,
-            color: color
-        });
-    });
-});
+// - знайти піковий туз
 
+const ace = cards.filter(item => item.value === 'ace' && item.cardSuit === 'spades');
+console.log(ace);
+console.log('------------------------------------')
+
+
+// - знайти піковий туз
+const six = cards.filter(item => item.value === '6')
+console.log(six);
+console.log('------------------------------------')
+
+//- всі червоні карти
+
+const colorRed = cards.filter(item => item.color === 'red');
+console.log(colorRed);
+console.log('------------------------------------')
+// - всі буби
+
+const diamonds = cards.filter(item => item.cardSuit === 'diamonds');
+console.log(diamonds);
+console.log('------------------------------------')
+
+// - всі трефи від 9 та більше
+
+const allNumCards = cards.filter(item => item.cardSuit === 'clubs').splice(4);
+console.log(allNumCards);
+console.log('------------------------------------')
 // Видалення дублікатів
-const uniqueCardDeck = Array.from(new Set(cardDeck.map(card => JSON.stringify(card)))).map(card => JSON.parse(card));
+const uniqueCards = Array.from(new Set(cards.map(card => JSON.stringify(card)))).map(card => JSON.parse(card));
 
 // За допомогою reduce упакувати всі карти по "мастях" в об'єкт
-const packedCards = uniqueCardDeck.reduce((accumulator, currentCard) => {
+const packedCards = uniqueCards.reduce((accumulator, currentCard) => {
     accumulator[currentCard.cardSuit].push(currentCard);
     return accumulator;
 }, {
