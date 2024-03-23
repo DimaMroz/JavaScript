@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+<h1>Welcome to the Index Page</h1>
+<p>This is the content of the index page.</p>
+
+<script>
+    // Отримання поточної дати та часу
+    let currentDate = new Date();
+
+    // Отримання масиву сесій з локального сховища, якщо він вже існує, або створення нового масиву
+    let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+
+    // Додавання поточної сесії до масиву сесій
+    sessions.push({ date: currentDate });
+
+    // Збереження оновленого масиву сесій у локальному сховищі
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+</script>
+</body>
+</html>
+
+//Є сторінка index.html (назва довільна), при відвідуванні якої в локальне сховще, в масив sessions зберігається інформація про дату та час відвідування сторінки.
+//Є ще сторінка sessions.html (назва довільна), при відвідуванні якої потрібно відмалювати всю інформацію про відвідування сторінки index.html.
+//Інфу НЕ виводити в консоль, а побудувати дом структуру під кожну сессію

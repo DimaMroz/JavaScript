@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка віку</title>
+</head>
+<body>
+<label for="ageInput">Введіть ваш вік:</label>
+<input type="number" id="ageInput" min="0" max="150">
+<button id="checkButton">Перевірити вік</button>
+
+<div id="message"></div>
+
+<script>
+    // Отримуємо посилання на інпут для введення віку
+    let ageInput = document.getElementById('ageInput');
+
+    // Отримуємо посилання на кнопку для перевірки віку
+    let checkButton = document.getElementById('checkButton');
+
+    // Отримуємо посилання на блок повідомлення
+    let message = document.getElementById('message');
+
+    // Додаємо обробник події "click" до кнопки
+    checkButton.addEventListener('click', function() {
+        // Отримуємо значення введеного віку
+        let age = parseInt(ageInput.value);
+
+        // Перевіряємо, чи вік менше 18
+        if (age < 18) {
+            // Якщо вік менше 18, виводимо повідомлення про це
+            message.textContent = 'Ви ще неповнолітній!';
+        } else {
+            // Якщо вік більше або рівний 18, виводимо повідомлення про успішну перевірку
+            message.textContent = 'Ваш вік підтверджено.';
+        }
+    });
+</script>
+</body>
+</html>
+
+// створити інпут який приймає вік людини та кнопку яка підтверджує дію.
+// При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача

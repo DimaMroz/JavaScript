@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment Page Reload</title>
+</head>
+<body>
+<div id="numberBlock">0</div>
+
+<script>
+    let number = localStorage.getItem('number');
+    if (!number) {
+        number = 0;
+    } else {
+        number = parseInt(number);
+    }
+
+    number++;
+
+    document.getElementById('numberBlock').innerText = number;
+
+    localStorage.setItem('number', number.toString());
+</script>
+</body>
+</html>
+
+//є сторінка, на якій є блок, я кому знаходиьтся цифра.
+//написати код, який при кожному перезавантажені сторінки буде додавати до неї +1
+

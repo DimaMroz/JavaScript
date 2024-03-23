@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sessions Page</title>
+</head>
+<body>
+<h1>Sessions History</h1>
+<div id="sessionsList"></div>
+
+<script>
+  // Отримання масиву сесій з локального сховища
+  let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+
+  // Отримання посилання на контейнер для відображення списку сесій
+  let sessionsList = document.getElementById('sessionsList');
+
+  // Ітерація по масиву сесій та створення DOM-елементів для кожної сесії
+  sessions.forEach(session => {
+    // Створення DOM-елементу для відображення дати та часу сесії
+    let sessionElement = document.createElement('div');
+    sessionElement.textContent = 'Session Date: ' + session.date;
+
+    // Додавання DOM-елементу до списку сесій
+    sessionsList.appendChild(sessionElement);
+  });
+</script>
+</body>
+</html>

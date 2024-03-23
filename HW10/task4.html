@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Pagination</title>
+</head>
+<body>
+<div id="objectsContainer"></div>
+<button id="prevButton">Prev</button>
+<button id="nextButton">Next</button>
+
+<script>
+    // Генерація масиву з 100 об'єктів
+    let objects = [];
+    for (let i = 0; i < 100; i++) {
+        objects.push({ id: i + 1, name: `Object ${i + 1}` });
+    }
+
+    // Посилання на контейнер для відображення об'єктів
+    let objectsContainer = document.getElementById('objectsContainer');
+
+    // Початковий індекс об'єкта для відображення
+    let currentIndex = 0;
+
+    // Функція для відображення об'єктів у контейнері
+    function displayObjects(startIndex) {
+        // Очищення контейнера перед відображенням нових об'єктів
+        objectsContainer.innerHTML = '';
+
+        // Підрахунок кількості об'єктів для відображення
+        let endIndex = Math.min(startIndex + 10, objects.length);
+
+        // Відображення об'єктів у контейнері
+        for (let i = startIndex; i < endIndex; i++) {
+            let object = objects[i];
+            let objectElement = document.createElement('div');
+            objectElement.textContent = `ID: ${object.id}, Name: ${object.name}`;
+            objectsContainer.appendChild(objectElement);
+        }
+    }
+
+    // Відображення початкових 10 об'єктів
+    displayObjects(currentIndex);
+
+    // Обробник натискання кнопки "Next"
+    document.getElementById('nextButton').addEventListener('click', function () {
+        if (currentIndex + 10 < objects.length) {
+            currentIndex += 10;
+            displayObjects(currentIndex);
+        }
+    });
+
+    // Обробник натискання кнопки "Prev"
+    document.getElementById('prevButton').addEventListener('click', function () {
+        if (currentIndex - 10 >= 0) {
+            currentIndex -= 10;
+            displayObjects(currentIndex);
+        }
+    });
+</script>
+</body>
+</html>
+
+//зробити масив на 100 об'єктів та дві кнопки prev next
+//при завантажені сторінки з'являються перші 10 об'єктів.
+//При натисканні next виводяться настпні 10 об'єктів
+//При натисканні prev виводяться попередні 10 об'єктів

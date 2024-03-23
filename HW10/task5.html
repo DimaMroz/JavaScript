@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Element</title>
+</head>
+<body>
+<div id="text">Цей елемент буде прихований</div>
+<button id="removeButton">Приховати елемент</button>
+
+<script>
+  // Отримуємо посилання на елемент з ідентифікатором "text"
+  let textElement = document.getElementById('text');
+
+  // Отримуємо посилання на кнопку з ідентифікатором "removeButton"
+  let removeButton = document.getElementById('removeButton');
+
+  // Додаємо обробник події "click" до кнопки
+  removeButton.addEventListener('click', function() {
+    // Перевіряємо, чи існує елемент з ідентифікатором "text"
+    if (textElement) {
+      // Приховуємо елемент
+      textElement.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
+
+// Створити довільний елемент з id = text та створити кнопку.
+// Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".

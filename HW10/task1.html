@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+<form id="myForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="surname">Surname:</label><br>
+    <input type="text" id="surname" name="surname"><br>
+    <label for="age">Age:</label><br>
+    <input type="text" id="age" name="age"><br><br>
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+<div id="output"></div>
+
+<script>
+    function submitForm() {
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const age = document.getElementById('age').value;
+
+        const data = {
+            name: name,
+            surname: surname,
+            age: age
+        };
+
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = '<h2>Submitted Data:</h2>' + JSON.stringify(data, null, 2);
+    }
+</script>
+</body>
+</html>
+
+
+//Стоврити форму з трьома полями для name,sruname,age та кнопкою.
+//При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ.
+//Іншими словами : заповнити форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом
