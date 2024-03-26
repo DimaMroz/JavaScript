@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Information</title>
+
+  <!--
+ - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти.
+ Інгредієнти повинні бути список під час відображення
+-->
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .recipe-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .recipe-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .ingredients-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .ingredients-list li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="recipe-container"></div>
+<script>
+  (async () => {
+    const recipeContainer = document.getElementById('recipe-container');
+    try {
+      const response = await fetch('https://dummyjson.com/recipes');
+      if (!response.ok) throw new Error('Failed to fetch recipes');
+      const data = await response.json();
+      renderRecipes(data.recipes);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+
+    function renderRecipes(recipes) {
+      recipes.forEach(recipe => {
+        recipeContainer.appendChild(createRecipeElement(recipe));
+      });
+    }
+
+    function createRecipeElement(recipe) {
+      const recipeDiv = document.createElement('div');
+      recipeDiv.classList.add('recipe-container');
+
+      const nameParagraph = document.createElement('p');
+      nameParagraph.classList.add('recipe-name');
+      nameParagraph.textContent = recipe.name;
+
+      const ingredientsList = document.createElement('ul');
+      ingredientsList.classList.add('ingredients-list');
+      ingredientsList.textContent = 'Ingredients:';
+      recipe.ingredients.forEach(ingredient => {
+        const listItem = document.createElement('li');
+        listItem.textContent = ingredient;
+        ingredientsList.appendChild(listItem);
+      });
+
+      recipeDiv.appendChild(nameParagraph);
+      recipeDiv.appendChild(ingredientsList); // Fixed this line
+      return recipeDiv;
+    }
+  })();
+</script>
+</body>
+</html>
+
+
